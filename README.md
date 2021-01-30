@@ -13,4 +13,12 @@ games.json
 
 ## How to install
 
-TODO
+```
+pip install -r requirements.txt
+```
+
+## How to run
+
+```
+python main.py "terra mystica"
+```
