@@ -1,4 +1,7 @@
 # created by virtualenv automatically
+
+node_modules
+
 __pycache__
 testdir
 lib
