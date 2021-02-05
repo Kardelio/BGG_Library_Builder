@@ -70,8 +70,10 @@ playt = first.find("playingtime")
 mplayt = first.find("minplaytime")
 maxplayt = first.find("maxplaytime")
 pubb = first.find("boardgamepublisher")
+image = first.find("image")
+description = first.find("description")
 
-selected.addDetails(int(minp.text), int(maxp.text), int(mplayt.text), int(maxplayt.text), int(playt.text), pubb.text)
+selected.addDetails(int(minp.text), int(maxp.text), int(mplayt.text), int(maxplayt.text), int(playt.text), pubb.text, image.text, description.text)
 #print(f"{selected.fullDisplay()}")
 #print(f"{selected.outputJson()}")
 
