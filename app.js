@@ -1,8 +1,18 @@
 var express = require("express");
 var app = express();
 var fs = require('fs');
+var path = require('path');
 
 const port = 8080;
+
+// app.use(express.static('static'));
+
+app.get("/", (req, res)=> {
+    res.sendFile(path.join(__dirname + "/index.html"))
+})
+app.get("/index.js", (req, res)=> {
+    res.sendFile(path.join(__dirname + "/index.js"))
+})
 
 app.get('/getSpecificGames', (req, res) => {
     console.log(`===> /getAllGames with query of: ${req.query.query}`);
