@@ -1,0 +1,51 @@
+body{
+    background: lightblue;
+}
+
+#container {
+    text-align: center;
+}
+
+.games-container{
+    min-height: 3em;
+    margin: 1em auto;
+    width: 100%;
+    text-align: left;
+    border: 2px solid;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.game {
+    padding: 0.2em;
+    display: flex;
+    align-items: center;
+}
+
+.game-name{
+    font-size: 100%;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.game-id{
+    font-size: 70%;
+}
+.game-rank{
+    font-size: 70%;
+}
+.game-url{
+    font-size: 70%;
+}
+
+
+#game-search-text-input{
+    font-size: 150%;
+    margin-bottom: 0.5em;
+}
+
+#game-search-button{
+    padding: 0.2em;
+    font-size: 150%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
