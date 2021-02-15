@@ -1,9 +1,14 @@
 body{
     background: lightblue;
+    font-family: monospace;
 }
 
 #container {
     text-align: center;
+}
+
+#my-games{
+    display: flex;
 }
 
 .games-container{
@@ -14,6 +19,30 @@ body{
     border: 2px solid;
     background-color: white;
     border-radius: 5px;
+}
+
+.single-game-block{
+    background: black;
+    margin: 10px;
+    border: 3px solid grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+
+input {
+    font-family : inherit;
+    font-size: 1em;
+}
+
+button {
+    font-family : inherit;
+    font-size: 1em;
+}
+
+.game-image{
+    width: 10em;
 }
 
 .game {

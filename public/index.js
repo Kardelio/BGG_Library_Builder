@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    getHostName()
+    getAllGames()
         .then(d => {
             console.log(d);
             d.games.forEach(element => {
-                document.getElementById("container").innerHTML += `<p>${element.name}</p>`;
+                displayGame(element);
             });
         })
         .catch(err => {
@@ -12,56 +12,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
 });
 
-//name
-//url
-//id
-//rank
-function searchButtonClick(){
-    console.log("Click");
-    document.getElementById("searched-game-container").innerHTML = "";
-    let query = document.getElementById("game-search-text-input").value;
-    if(query){
-        searchForGame(query)
-        .then(d => {
-            console.log(d);
-            d.games.forEach(element => {
-                document.getElementById("searched-game-container").innerHTML += `
-                <div class="game">
-                    <div class="game-name">
-                        ${element.name}
-                    </div>
-                    <div class="game-id">
-                        (${element.id})
-                    </div>
-                    <div class="game-rank">
-                        ${element.rank}
-                    </div>
-                    <div class="game-url">
-                        ${element.url}
-                    </div>
-                </div>`
-            });
-        })
-    } else {
-        console.log("Nope");
-    }
+function displayGame(game){
+    document.getElementById("my-games").innerHTML += `
+    <div class="single-game-block">
+    <img class="game-image" src="${game.image}"
+        ${game.name}
+    </div>`;
+}
+
+function navigateToAdd(){
+    window.location.href = "add.html";
+}
+
+function navigateToAllGames(){
+    window.location.href = "/";
 }
 
 //Promise Network Calls
 //---------------------
 
-function searchForGame(query){
-    return new Promise((res, rej) => {
-        fetch(`/search?query=${query}`)
-            .then((data) => {
-                res(data.json())
-            }).catch((err) => {
-                rej(err.message);
-            })
-    });
-}
-
-function getHostName() {
+function getAllGames() {
     return new Promise((res, rej) => {
         fetch("/getAllGames")
             .then((data) => {
@@ -71,5 +41,11 @@ function getHostName() {
             })
     });
 }
+/*
+ style="background-image: url('${game.image}')"
 
-
+background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: black;
+*/
