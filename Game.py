@@ -6,6 +6,7 @@ class game:
     year = ""
     rank = ""
     url = ""
+
     min_players = 0
     max_players = 0
     min_play_time = 0

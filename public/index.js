@@ -15,10 +15,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
 function displayGame(game){
     document.getElementById("my-games").innerHTML += `
     <div class="single-game-block">
-    <img class="game-image" src="${game.image}"
-        ${game.name}
+        <img class="game-image" src="${game.image}"/>
+        <div class="single-game-block-overlay"></div>
+        <div class="inner-game-block">
+            <div>${game.name} (${game.year})</div>
+            <div>${game.min_players}-${game.max_players} players</div>
+            <div>${game.min_play_time}-${game.max_play_time} mins</div>
+        </div>
     </div>`;
 }
+{/* <div class="single-game-block-overlay"></div> */}
 
 function navigateToAdd(){
     window.location.href = "add.html";

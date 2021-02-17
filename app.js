@@ -2,11 +2,13 @@ var express = require("express");
 var app = express();
 var fs = require('fs');
 var path = require('path');
+var bodyParser = require('body-parser');
 const { PythonShell } = require('python-shell');
 
 const SEARCH_SCRIPT = "";
 
 const port = 8080;
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 // app.get("/", (req, res) => {
@@ -22,7 +24,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/search', (req, res) => {
     if (req.query.query) {
         console.log(`Search for: ${req.query.query}`);
-        pythonFunctionProm(req.query.query)
+        pythonFunctionProm("search.py", req.query.query)
             .then(d => {
                 res.write(d);
                 res.end();
@@ -33,6 +35,34 @@ app.get('/search', (req, res) => {
     } else {
         res.status(500).send("No search query");
     }
+})
+
+app.post('/addAGame', (req, res) => {
+    let bodyData = req.body.game;
+    let outout = {
+        "success": true,
+        "message": ""
+    };
+    // console.log(req);
+    console.log(bodyData);
+
+    pythonFunctionProm("add.py", JSON.stringify(bodyData))
+        .then(d => {
+            if(d.includes("already")){
+                outout.success = false;
+            }
+            outout.message = d;
+            res.write(JSON.stringify(outout));
+            res.end();
+        })
+        .catch(err => {
+            res.status(500).send("Failed to add game");
+        });
+
+
+    // res.status(200).send("Nah");
+
+    // res.end();
 })
 
 app.get('/getSpecificGames', (req, res) => {
@@ -70,16 +100,18 @@ app.get('/getAllGames', (req, res) => {
 });
 
 
-function pythonFunctionProm(query) {
+function pythonFunctionProm(script, query) {
     return new Promise((success, reject) => {
         let options = {
             args: [query]
         };
 
-        PythonShell.run('search.py', options, function (err, results) {
+        PythonShell.run(script, options, function (err, results) {
             if (err) {
+                console.log(err);
                 reject(err);
             } else {
+                console.log(results);
                 success(results[0].trim().replace(/'/g, '"'))
             }
         });

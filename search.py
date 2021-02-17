@@ -23,8 +23,12 @@ for it in rows:
     ID = it.get("id")
     if ID == "row_":
         f = it.find('a', class_="primary")
+        y = it.find('span', class_="smallerfont dull")
         r = it.find('td', class_="collection_rank")
-        g = shortgame(re.sub(r'[^A-Za-z0-9 ]+', '', f.text.replace(':',' ')),f["href"], re.sub(r'\W+','',r.text))
+        year = "N/A"
+        if y is not None:
+            year = y.text.strip("()")
+        g = shortgame(re.sub(r'[^A-Za-z0-9 ]+', '', f.text.replace(':',' ')),f["href"], re.sub(r'\W+','',r.text), year)
         refined_org.append(g)
 
 for item in refined_org:

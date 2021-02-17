@@ -9,6 +9,8 @@ body{
 
 #my-games{
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .games-container{
@@ -26,10 +28,24 @@ body{
     margin: 10px;
     border: 3px solid grey;
     border-radius: 5px;
+    position: relative;
     display: flex;
     justify-content: center;
+    /* display: flex;
+    justify-content: center;
+    position: relative; */
+
+
 }
 
+.single-game-block-overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px -90px 50px -60px rgb(0 0 0) inset;
+    -webkit-box-shadow: 0px -90px 50px -60px rgb(0 0 0) inset;
+    -moz-box-shadow: 0px -90px 50px -60px rgb(0 0 0) inset;
+}
 
 input {
     font-family : inherit;
@@ -42,13 +58,32 @@ button {
 }
 
 .game-image{
-    width: 10em;
+    height: 15em;
+}
+
+.game-image:after{
+
+}
+
+.inner-game-block{
+    position: absolute;
+    bottom: 0;
+    color: white;
 }
 
 .game {
-    padding: 0.2em;
     display: flex;
+    padding: 0.5em;
     align-items: center;
+}
+
+.game:hover {
+    background-color: #a5a5ff;
+    color: white;
+}
+
+.game-atter{
+    margin: 0 0.5em;
 }
 
 .game-name{
@@ -60,7 +95,10 @@ button {
     font-size: 70%;
 }
 .game-rank{
-    font-size: 70%;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    padding: 1px 5px;
 }
 .game-url{
     font-size: 70%;

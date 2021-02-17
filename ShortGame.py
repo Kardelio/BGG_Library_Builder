@@ -5,11 +5,13 @@ class shortgame:
     url = ""
     name = ""
     rank = ""
+    year = ""
     
-    def __init__(self,name_in, url_in, rank_in):
+    def __init__(self,name_in, url_in, rank_in, year_in):
         self.name = name_in
         self.url = url_in
         self.rank = rank_in
+        self.year = year_in
         self.id = self.getGameId()
 
     def getGameId(self):
