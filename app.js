@@ -43,12 +43,9 @@ app.post('/addAGame', (req, res) => {
         "success": true,
         "message": ""
     };
-    // console.log(req);
-    console.log(bodyData);
-
     pythonFunctionProm("add.py", JSON.stringify(bodyData))
         .then(d => {
-            if(d.includes("already")){
+            if (d.includes("already")) {
                 outout.success = false;
             }
             outout.message = d;
@@ -58,12 +55,35 @@ app.post('/addAGame', (req, res) => {
         .catch(err => {
             res.status(500).send("Failed to add game");
         });
-
-
-    // res.status(200).send("Nah");
-
-    // res.end();
 })
+
+
+app.get('/removeAGame', (req, res) => {
+    let output = {
+        "success": true,
+        "message": ""
+    };
+    console.log(`===> /removeAGame with query of: ${req.query.id}`);
+    try {
+        let raw = fs.readFileSync("games.json", "utf8");
+        let parsed = JSON.parse(raw);
+        let b = parsed.games.findIndex(x => x.game_id == req.query.id);        
+        parsed.games.splice(b, 1);
+        try {
+            fs.writeFileSync("games.json", JSON.stringify(parsed));
+            output.success = true;
+            res.write(JSON.stringify(output));
+            res.end();
+        } catch (err) {
+            console.log(err);
+            res.status(500).send("Could not find games file");
+        }
+    } catch (err) {
+        res.status(500).send("Could not find games file");
+    }
+})
+
+
 
 app.get('/getSpecificGames', (req, res) => {
     console.log(`===> /getAllGames with query of: ${req.query.query}`);
