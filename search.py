@@ -25,10 +25,12 @@ for it in rows:
         f = it.find('a', class_="primary")
         y = it.find('span', class_="smallerfont dull")
         r = it.find('td', class_="collection_rank")
+        imagetd = it.find('td', class_="collection_thumbnail")
+        imageurl = imagetd.find('img')
         year = "N/A"
         if y is not None:
             year = y.text.strip("()")
-        g = shortgame(re.sub(r'[^A-Za-z0-9 ]+', '', f.text.replace(':',' ')),f["href"], re.sub(r'\W+','',r.text), year)
+        g = shortgame(re.sub(r'[^A-Za-z0-9 ]+', '', f.text.replace(':',' ')),f["href"], re.sub(r'\W+','',r.text), year, imageurl["src"])
         refined_org.append(g)
 
 for item in refined_org:

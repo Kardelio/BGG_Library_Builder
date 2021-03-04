@@ -21,6 +21,9 @@ function displaySearchedGame(game) {
 
     document.getElementById("searched-game-container").innerHTML += `
     <div class="game" onclick="clickSingleGameItem(${game.id})">
+        <div>
+            <img src="${game.image}"/>
+        </div>
         <div class="game-name game-atter">
             ${game.name}
         </div>
