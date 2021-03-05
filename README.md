@@ -22,3 +22,9 @@ pip install -r requirements.txt
 ```
 python main.py "terra mystica"
 ```
+
+
+### Virtualenv
+
+virtualenv .
+pip install -r requirements.txt
