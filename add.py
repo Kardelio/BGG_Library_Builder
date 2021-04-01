@@ -26,11 +26,13 @@ query = sys.argv[1]
 parsed=urllib.parse.quote(query)
 
 def convertJsonToGame(jsonstr):
+    print(jsonstr)
     name = jsonstr['name']
     year = jsonstr['year']
     rank = jsonstr['rank']
     url = jsonstr['url']
-    return game(name, year, rank, url)
+    thumbnail = jsonstr['image']
+    return game(name, year, rank, url, thumbnail)
 
 b = json.loads(query)
 selected = convertJsonToGame(b)

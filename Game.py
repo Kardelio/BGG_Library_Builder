@@ -6,6 +6,7 @@ class game:
     year = ""
     rank = ""
     url = ""
+    thumbnail = ""
 
     min_players = 0
     max_players = 0
@@ -16,11 +17,12 @@ class game:
     image = ""
     description = ""
 
-    def __init__(self,name_in,year_in, rank_in, url_in):
+    def __init__(self,name_in,year_in, rank_in, url_in, thumbnail_in):
         self.name = name_in
         self.year = year_in
         self.rank = rank_in
         self.url = url_in
+        self.thumbnail = thumbnail_in
         self.game_id = self.getGameId()
 
     def getGameId(self):
